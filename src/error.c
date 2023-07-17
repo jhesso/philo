@@ -6,15 +6,15 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:54:59 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/13 16:48:21 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/07/17 12:24:33 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	clean_exit(t_philo *philo, char *err_msg)
+void	clean_exit(t_table *table, char *err_msg, int exit_nb)
 {
 	ft_putstr_fd(err_msg, STDERR_FILENO);
-	(void)philo;
-	exit (0);
+	(void)table;
+	exit (exit_nb);
 }

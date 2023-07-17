@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:41:22 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/13 17:01:51 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/07/17 12:14:46 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	check_digits(char *str)
 	return (1);
 }
 
-void	validate_input(t_philo *philo, char **av)
+void	validate_input(t_table *table, char **av)
 {
 	int	row;
 	int	col;
@@ -35,20 +35,20 @@ void	validate_input(t_philo *philo, char **av)
 	while (av[row])
 	{
 		if (!check_digits(av[row]))
-			clean_exit(philo, "all arguments should be positive integers\n");
+			clean_exit(table, "all arguments should be positive integers\n");
 		row++;
 	}
-	philo->philo_amount = ft_atoi(av[1]);
-	philo->time_to_die = ft_atoi(av[2]);
-	philo->time_to_eat = ft_atoi(av[3]);
-	philo->time_to_sleep = ft_atoi(av[4]);
+	table->nb_philos = ft_atoi(av[1]);
+	table->time_to_die = ft_atoi(av[2]);
+	table->time_to_eat = ft_atoi(av[3]);
+	table->time_to_sleep = ft_atoi(av[4]);
 	if (av[5] != NULL)
 	{
-		philo->amount_must_eat = ft_atoi(av[5]);
-		philo->opt = 1;
+		table->amount_must_eat = ft_atoi(av[5]);
+		table->opt = 1;
 	}
-	if (philo->philo_amount < 1 || philo->time_to_die < 1 || \
-		philo->time_to_eat < 1 || philo->time_to_sleep < 1 || \
-		(philo->opt == 1 && philo->amount_must_eat < 1))
-		clean_exit(philo, "all arguments should be positive integers\n");
+	if (table->nb_philos < 1 || table->time_to_die < 1 || \
+		table->time_to_eat < 1 || table->time_to_sleep < 1 || \
+		(table->opt == 1 && table->amount_must_eat < 1))
+		clean_exit(table, "all arguments should be positive integers\n");
 }
