@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:10:37 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/17 16:39:46 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/07/17 16:58:31 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@ void	*grim_reaper(void *data);
 int		ft_atoi(const char *str);
 int		ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *s);
+
+/* time.c */
+time_t	get_time_in_ms(void);
 
 /* exit.c */
 int		err_msg(char *msg, char *detail, int exit_nb);
