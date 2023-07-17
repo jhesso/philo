@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:54:59 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/17 16:16:42 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/07/17 16:39:39 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,25 @@ int	err_msg(char *msg, char *detail, int exit_nb)
 	return (exit_nb);
 }
 
-void	clean_exit(t_table *table, int exit_nb)
+/*	failure():
+*	Frees any allocated memory, prints an error message and
+*	returns 0 to indicate failure.
+*/
+int	failure(char *msg, char *details, t_table *table)
 {
 	if (table != NULL)
 		free_table(table);
-	exit (exit_nb);
+	return (err_msg(msg, details, 0));
+}
+
+/*	error_null()
+*	Frees any allocated memory, prints an error message and returns a NULL pointer.
+*	Used for error management during initialization.
+*/
+void	*error_null(char *str, char *details, t_table *table)
+{
+	if (table != NULL)
+		free_table(table);
+	err_msg(str, details, EXIT_FAILURE);
+	return (NULL);
 }

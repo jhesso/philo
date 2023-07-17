@@ -6,13 +6,44 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:37:02 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/17 16:11:58 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/07/17 16:34:33 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	stop_simulation(t_table *table)
+/*	start_threads()
+*	Launch the simulation by creating a grim reaper thread and one thread
+*	per philosopher.
+*	Returns true if the simulation was successfully started, false
+*	if there was an error.
+*/
+static bool	start_threads(t_table *table)
+{
+	unsigned int	i;
+
+	table->start_time = get_time_in_ms() + (table->nb_philos * 2 * 10);
+	i = 0;
+	while (i < table->nb_philos)
+	{
+		if (pthread_create(&table->philos[i]->thread, NULL, \
+			&philosopher, table->philos[i]) != 0)
+			return (failure(STR_ERR_THREAD, NULL, table));
+		i++;
+	}
+	if (table->nb_philos > 1)
+	{
+		if (pthread_create(&table->grim_reaper, NULL, &grim_reaper, table) != 0)
+			return (failure(STR_ERR_THREAD, NULL, table));
+	}
+	return (true);
+}
+
+/*	stop_treads()
+*	Waits for all threads to be joined and then destroyes all mutexes
+*	and frees allocated memory
+*/
+static void	stop_threads(t_table *table)
 {
 	unsigned int	i;
 
@@ -39,9 +70,9 @@ int	main(int ac, char **av)
 	table = init_table(ac, av, 1);
 	if (!table)
 		return(EXIT_FAILURE);
-	if (!start_simulation(table))
+	if (!start_threads(table))
 		return (EXIT_FAILURE);
-	stop_simulation(table);
+	stop_threads(table);
 	printf("valid input :)\n");
 	printf("input given:\nnb_philos: %d\ntime_to_die: %ld\ntime_to_eat: %ld\n\
 	time_to_sleep: %ld\namount_must_eat: %d\n", table->nb_philos, table->time_to_die, \

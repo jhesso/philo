@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:50:31 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/17 14:07:00 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/07/17 16:47:52 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ static t_philo	**init_philos(t_table *table)
 
 	philos = malloc(sizeof(t_philo) * table->nb_philos);
 	if (!philos)
-		return (NULL);
+		return (error_null(STR_ERR_MALLOC, NULL, 0));
 	i = 0;
 	while (i < table->nb_philos)
 	{
 		philos[i] = malloc(sizeof(t_philo));
 		if (!philos[i])
-			return (NULL);
+			return (error_null(STR_ERR_MALLOC, NULL, 0));
 		if (pthread_mutex_init(&philos[i]->meal_time_lock, 0) != 0)
-			clean_exit(table, err_msg(STR_ERR_MUTEX, NULL, EXIT_FAILURE));
+			return (error_null(STR_ERR_MUTEX, NULL, 0));
 		philos[i]->table = table;
 		philos[i]->id = i;
 		philos[i]->times_ate = 0;
@@ -58,6 +58,10 @@ static t_philo	**init_philos(t_table *table)
 	return (philos);
 }
 
+/*	init_forks()
+*	Allocates memory and initializes fork mutexes
+*	Returns a pointer to the fork mutex array, or NULL if an error occured
+*/
 static pthread_mutex_t	*init_forks(t_table *table)
 {
 	pthread_mutex_t	*forks;
@@ -65,12 +69,12 @@ static pthread_mutex_t	*init_forks(t_table *table)
 
 	forks = malloc(sizeof(pthread_mutex_t) * table->nb_philos);
 	if (!forks)
-		clean_exit(table, err_msg(STR_ERR_MALLOC, NULL, EXIT_FAILURE));
+		return (error_null(STR_ERR_MALLOC, NULL, 0));
 	i = 0;
 	while (i < table->nb_philos)
 	{
 		if (pthread_mutex_init(&forks[i], 0) != 0)
-			clean_exit(table, err_msg(STR_ERR_MUTEX, NULL, EXIT_FAILURE));
+			return (error_null(STR_ERR_MUTEX, NULL, 0));
 		i++;
 	}
 	return (forks);
@@ -87,9 +91,9 @@ static bool	init_global_mutexes(t_table *table)
 	if (!table->fork_locks)
 		return (false);
 	if (pthread_mutex_init(&table->sim_stop_lock, 0) != 0)
-		return (false);
+		return (failure(STR_ERR_MUTEX, NULL, table));
 	if (pthread_mutex_init(&table->write_lock, 0) != 0)
-		return (false);
+		return (failure(STR_ERR_MUTEX, NULL, table));
 	return (true);
 }
 
@@ -104,7 +108,7 @@ t_table	*init_table(int ac, char **av, int i)
 
 	table = malloc(sizeof(t_table));
 	if (!table)
-		clean_exit(table, err_msg(STR_ERR_MALLOC, NULL, EXIT_FAILURE));
+		return (error_null(STR_ERR_MALLOC, NULL, 0));
 	table->nb_philos = ft_atoi(av[i++]);
 	table->time_to_die = ft_atoi(av[i++]);
 	table->time_to_eat = ft_atoi(av[i++]);
@@ -114,9 +118,9 @@ t_table	*init_table(int ac, char **av, int i)
 		table->amount_must_eat = ft_atoi(av[i]);
 	table->philos = init_philos(table);
 	if (!table->philos)
-		clean_exit(table, err_msg(STR_ERR_MALLOC, NULL, EXIT_FAILURE));
+		return (NULL);
 	if (!init_global_mutexes(table))
-		clean_exit(table, err_msg(STR_ERR_MUTEX, NULL, EXIT_FAILURE));
+		return (NULL);
 	table->sim_stop = false;
 	return (table);
 }

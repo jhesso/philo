@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:10:37 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/17 16:18:32 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/07/17 16:39:46 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,13 @@ bool	validate_input(int ac, char **av);
 /* init.c */
 t_table	*init_table(int ac, char **av, int i);
 
+/*--------------------------------Simulation----------------------------------*/
+/* philosopher.c */
+void	*philosopher(void *data);
+
+/* grim_reaper.c */
+void	*grim_reaper(void *data);
+
 /*--------------------------Utils and error handling--------------------------*/
 /* utils.c */
 int		ft_atoi(const char *str);
@@ -91,8 +98,9 @@ size_t	ft_strlen(const char *s);
 
 /* exit.c */
 int		err_msg(char *msg, char *detail, int exit_nb);
-void	clean_exit(t_table *table, int exit_nb);
 void	free_table(t_table *table);
 void	destroy_mutexes(t_table *table);
+int		failure(char *msg, char *details, t_table *table);
+void	*error_null(char *str, char *details, t_table *table);
 
 #endif
