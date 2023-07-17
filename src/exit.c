@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:54:59 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/17 12:59:25 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/07/17 16:16:42 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,21 @@ void	free_table(t_table *table)
 		}
 		free(table);
 	}
+}
+
+void	destroy_mutexes(t_table *table)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < table->nb_philos)
+	{
+		pthread_mutex_destroy(&table->fork_locks[i]);
+		pthread_mutex_destroy(&table->philos[i]->meal_time_lock);
+		i++;
+	}
+	pthread_mutex_destroy(&table->write_lock);
+	pthread_mutex_destroy(&table->sim_stop_lock);
 }
 
 int	err_msg(char *msg, char *detail, int exit_nb)

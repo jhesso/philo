@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:10:37 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/17 14:03:30 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/07/17 16:18:32 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ typedef struct	s_philo
 /*								   Functions								  */
 /******************************************************************************/
 
-/*-----------------------------input validation-------------------------------*/
-/* validation.c */
+/*-------------------------------Input parsing--------------------------------*/
+/* parsing.c */
 bool	validate_input(int ac, char **av);
 
 /*------------------------------Initialization--------------------------------*/
@@ -89,8 +89,10 @@ int		ft_atoi(const char *str);
 int		ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *s);
 
-/* error.c */
+/* exit.c */
 int		err_msg(char *msg, char *detail, int exit_nb);
 void	clean_exit(t_table *table, int exit_nb);
+void	free_table(t_table *table);
+void	destroy_mutexes(t_table *table);
 
 #endif
