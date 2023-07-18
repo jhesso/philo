@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:50:31 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/17 16:47:52 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/07/18 11:30:15 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static t_philo	**init_philos(t_table *table)
 	t_philo			**philos;
 	unsigned int	i;
 
-	philos = malloc(sizeof(t_philo) * table->nb_philos);
+	philos = malloc(sizeof(t_philo) * table->nb_philos); //! should this be sizeof(t_philo *)??
 	if (!philos)
 		return (error_null(STR_ERR_MALLOC, NULL, 0));
 	i = 0;

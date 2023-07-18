@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:56:46 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/17 16:57:57 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/07/18 12:32:01 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,23 @@ time_t	get_time_in_ms(void)
 
 	gettimeofday(&tv, NULL);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
+
+void	philo_wait(t_table *table, time_t sleep_time)
+{
+	time_t	wake_up;
+
+	wake_up = get_time_in_ms() + sleep_time;
+	while (get_time_in_ms() < wake_up)
+	{
+		if (has_simulation_stopped(table))
+			break;
+		usleep(100);
+	}
+}
+
+void	start_delay(time_t start_time)
+{
+	while (get_time_in_ms() < start_time)
+		continue;
 }

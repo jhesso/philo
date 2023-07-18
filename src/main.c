@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:37:02 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/17 16:59:55 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/07/18 14:35:20 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static bool	start_threads(t_table *table)
 {
 	unsigned int	i;
 
-	table->start_time = get_time_in_ms(); //! + (table->nb_philos * 2 * 10);
+	table->start_time = get_time_in_ms() + (table->nb_philos * 2 * 10);
 	i = 0;
 	while (i < table->nb_philos)
 	{
@@ -73,9 +73,5 @@ int	main(int ac, char **av)
 	if (!start_threads(table))
 		return (EXIT_FAILURE);
 	stop_threads(table);
-	printf("valid input :)\n");
-	printf("input given:\nnb_philos: %d\ntime_to_die: %ld\ntime_to_eat: %ld\n\
-	time_to_sleep: %ld\namount_must_eat: %d\n", table->nb_philos, table->time_to_die, \
-	table->time_to_eat, table->time_to_sleep, table->amount_must_eat);
 	return (EXIT_SUCCESS);
 }

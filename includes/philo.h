@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:10:37 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/17 16:58:31 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/07/18 12:47:03 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,16 @@ typedef struct	s_philo
 	t_table				*table;
 }						t_philo;
 
+typedef enum e_status
+{
+	DIED = 0,
+	EATING = 1,
+	SLEEPING = 2,
+	THINKING = 3,
+	GOT_FORK_1 = 4,
+	GOT_FORK_2 = 5
+}	t_status;
+
 /******************************************************************************/
 /*								   Functions								  */
 /******************************************************************************/
@@ -89,6 +99,7 @@ void	*philosopher(void *data);
 
 /* grim_reaper.c */
 void	*grim_reaper(void *data);
+bool	has_simulation_stopped(t_table *table);
 
 /*--------------------------Utils and error handling--------------------------*/
 /* utils.c */
@@ -98,6 +109,11 @@ size_t	ft_strlen(const char *s);
 
 /* time.c */
 time_t	get_time_in_ms(void);
+void	philo_wait(t_table *table, time_t sleep_time);
+void	start_delay(time_t start_time);
+
+/* output.c */
+void	write_status(t_philo *philo, bool reaper_report, t_status status);
 
 /* exit.c */
 int		err_msg(char *msg, char *detail, int exit_nb);
