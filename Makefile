@@ -6,7 +6,7 @@
 #    By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/13 15:49:11 by jhesso            #+#    #+#              #
-#    Updated: 2023/07/17 15:50:04 by jhesso           ###   ########.fr        #
+#    Updated: 2023/07/18 14:33:40 by jhesso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ CFLAGS		=	-Wall -Wextra -Werror -pthread $(DEBUG_FLAGS)
 DEBUG_FLAGS	=	-fsanitize=thread -g
 SRC_PATH	=	src/
 OBJ_PATH	=	obj/
-SRC			=	main.c utils.c parsing.c error.c init.c
+SRC			=	main.c utils.c parsing.c exit.c init.c \
+				grim_reaper.c output.c philosopher.c time.c
 SRCS		=	$(addprefix $(SRC_PATH), $(SRC))
 OBJ			=	$(SRC:.c=.o)
 OBJS		=	$(addprefix $(OBJ_PATH), $(OBJ))
