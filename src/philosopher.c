@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:00:39 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/18 14:39:31 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/07/18 15:27:57 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void	*philosopher(void *data)
 	if (philo->table->time_to_die == 0)
 		return (NULL);
 	if (philo->table->nb_philos == 1)
-		one_philo_routine(philo);
-	if (philo->id % 2)
+		return (one_philo_routine(philo));
+	else if (philo->id % 2)
 		think_routine(philo, true);
 	while (!has_simulation_stopped(philo->table))
 	{
