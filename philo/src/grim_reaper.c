@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:10:21 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/18 14:31:10 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/08/02 16:04:57 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	*grim_reaper(void *data)
 	{
 		if (end_condition_reached(table))
 			return (NULL);
-		usleep(1000);
+		usleep(300);
 	}
 	return (NULL);
 }

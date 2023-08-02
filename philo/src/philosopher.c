@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:00:39 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/28 13:28:26 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/08/02 18:19:49 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,12 @@ void	*philosopher(void *data)
 		return (one_philo_routine(philo));
 	else if (philo->id % 2)
 		think_routine(philo, true);
+		// usleep(200);
 	while (!has_simulation_stopped(philo->table))
 	{
 		eat_sleep_routine(philo);
 		think_routine(philo, false);
+		// write_status(philo, false, THINKING);
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:37:02 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/28 13:28:53 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/08/02 18:14:13 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ static bool	start_threads(t_table *table)
 {
 	unsigned int	i;
 
-	table->start_time = get_time_in_ms() + (table->nb_philos * 2 * 10); //? maybe this bit of math needs to be adjusted for large quantity of philos
+	table->start_time = get_time_in_ms() + (table->nb_philos * 2 * 10);
+	// table->start_time = get_time_in_ms() + 10000;
+	// table->start_time = get_time_in_ms();
 	i = 0;
 	while (i < table->nb_philos)
 	{

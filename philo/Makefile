@@ -6,12 +6,12 @@
 #    By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/13 15:49:11 by jhesso            #+#    #+#              #
-#    Updated: 2023/07/18 14:33:40 by jhesso           ###   ########.fr        #
+#    Updated: 2023/08/02 18:42:16 by jhesso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	philo
-CFLAGS		=	-Wall -Wextra -Werror -pthread $(DEBUG_FLAGS)
+CFLAGS		=	-Wall -Wextra -Werror -pthread #$(DEBUG_FLAGS)
 DEBUG_FLAGS	=	-fsanitize=thread -g
 SRC_PATH	=	src/
 OBJ_PATH	=	obj/
