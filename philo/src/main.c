@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:37:02 by jhesso            #+#    #+#             */
-/*   Updated: 2023/08/02 18:14:13 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/08/02 19:51:30 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	table = init_table(ac, av, 1);
 	if (!table)
-		return(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	if (!start_threads(table))
 		return (EXIT_FAILURE);
 	stop_threads(table);

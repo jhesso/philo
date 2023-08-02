@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:10:21 by jhesso            #+#    #+#             */
-/*   Updated: 2023/08/02 16:04:57 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/08/02 19:51:03 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static bool	kill_philo(t_philo *philo)
 		set_sim_stop_flag(philo->table, true);
 		write_status(philo, true, DIED);
 		pthread_mutex_unlock(&philo->meal_time_lock);
-		return(true);
+		return (true);
 	}
 	return (false);
 }
@@ -95,7 +95,7 @@ void	*grim_reaper(void *data)
 	t_table	*table;
 
 	table = (t_table *)data;
-	if(table->amount_must_eat == 0)
+	if (table->amount_must_eat == 0)
 		return (NULL);
 	set_sim_stop_flag(table, false);
 	start_delay(table->start_time);

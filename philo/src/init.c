@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:50:31 by jhesso            #+#    #+#             */
-/*   Updated: 2023/07/18 11:30:15 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/08/02 19:51:11 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 *	get their fork order switched. This is because the order in which
 *	philosophers take their forks matters.
 */
-static void		assign_forks(t_philo *philo)
+static void	assign_forks(t_philo *philo)
 {
 	philo->fork[0] = philo->id;
 	philo->fork[1] = (philo->id + 1) % philo->table->nb_philos;

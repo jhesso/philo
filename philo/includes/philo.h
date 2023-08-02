@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:10:37 by jhesso            #+#    #+#             */
-/*   Updated: 2023/08/02 18:51:40 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/08/02 19:53:06 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_table
 	t_philo			**philos;
 }		t_table;
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	pthread_t			thread;
 	unsigned int		id;
