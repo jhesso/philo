@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:54:59 by jhesso            #+#    #+#             */
-/*   Updated: 2023/08/04 18:33:58 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/08/04 19:31:58 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	free_table(t_table *table)
 			i++;
 		}
 		free(table->philos);
-		free(table);
 	}
-	free(table->fork_locks);
+		free(table->fork_locks);
+		free(table);
 }
 
 void	destroy_mutexes(t_table *table)

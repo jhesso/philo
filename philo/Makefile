@@ -6,7 +6,7 @@
 #    By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/13 15:49:11 by jhesso            #+#    #+#              #
-#    Updated: 2023/08/02 18:42:16 by jhesso           ###   ########.fr        #
+#    Updated: 2023/08/04 19:35:21 by jhesso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ $(OBJ_PATH):
 	@mkdir $(OBJ_PATH)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	@echo "$(BLUE)Compiling $<$(RESET)"
 	@cc $(CFLAGS) -c $< -o $@ $(INCS)
 
 $(NAME): $(OBJS)
