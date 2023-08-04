@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:00:39 by jhesso            #+#    #+#             */
-/*   Updated: 2023/08/04 19:09:07 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/08/04 19:41:36 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,10 @@ void	*philosopher(void *data)
 	t_philo	*philo;
 
 	philo = (t_philo *)data;
-	if (philo->table->amount_must_eat == 0)
-		return (NULL);
 	pthread_mutex_lock(&philo->meal_time_lock);
 	philo->last_meal = philo->table->start_time;
 	pthread_mutex_unlock(&philo->meal_time_lock);
 	start_delay(philo->table->start_time);
-	if (philo->table->time_to_die == 0)
-		return (NULL);
 	if (philo->table->nb_philos == 1)
 		return (one_philo_routine(philo));
 	else if (philo->id % 2)
