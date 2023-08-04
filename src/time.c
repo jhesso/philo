@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:56:46 by jhesso            #+#    #+#             */
-/*   Updated: 2023/08/02 19:52:12 by jhesso           ###   ########.fr       */
+/*   Updated: 2023/08/04 19:39:36 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	philo_wait(t_table *table, time_t sleep_time)
 		if (has_simulation_stopped(table))
 			break ;
 		usleep(300);
-		// usleep(sleep_time / 1000);
 	}
 }
 
